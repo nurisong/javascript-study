@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>1. 데이터를 출력하는 기본 구문</h1>
+    <h3>4) 선택한 요소.innerHTML / innerText = '해당 요소에 출력할 내용';</h3>
+    <div id="area1" class="area">
+        innerHTML과 innerText
+        자바스크립트에서 어떤 요소(Element) 안의 값(Content)을 가지고 온다거나 <br>
+        변경하고자 할 때 <b>innerHTML, innerText</b> 속성에 접근 <br>
+        => 가지고 올 때 : 변수 = 선택한 요소.innerHTML/innerText; <br>
+        => 변경하고자 할 때 : 선택한 요소.innerHTML/innerText = '변경할 값';
+    </div>
+
+    <button onclick="tagValue();">확인</button>
+
+    <script>
+        function tagValue() {
+            // 1. 먼저 해당 요소 객체를 가져와서 변수에 담는다.
+            var divE1 = document.getElementById('area1');
+    
+            console.log(divEl); // 해당 div 요소가 출력됨
+
+            // 선택한 요소 내에 정보들을 알아내고자 한다면 속성들에 .으로 직접 접근해야 함
+            
+            var divId = divE1.id;
+            console.log(divId);
+
+            console.log(divEl.id); // id: 해당 요소의 id 값
+            console.log(divEl.className); // className: 해당 요소의 class 값
+            
+            // 요소의 content 값 출력
+            console.log(divEl.innerHTML); // innerHTML: HTML 태그 포함
+            console.log(divEl.innerText); // innerText: HTML 태그 미포함
+        
+            // 요소의 content 값 변경 => 대입
+            divEl.innerHTML = '<b>innerHTML로 속성값을 변경함</b>';
+            divEl.innerText = '<b>innerText로 속성값을 변경함</b>'; // 태그 인식 X
+            // 위에서 콘솔창 출력 코드 값은 그대로 -> 순서에 따라 실행됨
+
+            console.dir(divEl); // 해당 요소의 디렉토리 구조(속성과 값)를 확인할 수 있음
+        }
+    </script>
+
+    <h1>2. 데이터를 입력받는 기본 구문(변수에 대입 가능)</h1>
+
+    <h3>1) window.confirm('질문내용');</h3>
+    
+    <button onclick="testConfirm();">클릭</button>
+    <div id="area2" class="area"></div>
+
+    <script>
+        function testConfirm() {
+           var result = window.confirm('맞으면 확인, 아니면 취소를 누르세요.');
+            console.log(result); // 확인(true), 취소(false) 결과값 확인
+        
+            var divEl = document.getElementById('area2'); // 요소 객체를 변수에 할당
+            divE1.innerHTML = '<h2>확인 테스트</h2>'; // 할당한 요소 객체 innerHTML 속성 값 변경
+
+            if(result) {
+                divEl.innerHTML= '<h2>맞습니다</h2>';
+            }
+            else {
+                divEl.innerHTML = '<h2>아닙니다</h2>';
+            }
+        }
+    </script>
+
+    <h3>2) window.prompt('질문내용');</h3>
+
+    <button onclick="testPrompt();">클릭</button>
+    <div id="area3" class="area"></div>
+
+    <script>
+        function testPrompt() {
+            var name = window.prompt('이름을 입력해주세요');
+            var address = window.prompt('주소를 입력해주세요.');
+
+            console.log(name);
+            console.log(address);
+
+            var divEl = document.getElementById('area3');
+            divEl.innerHTML = address + '에 사시는' + name + '님의 방문을 환영합니다.';
+        }
+    </script>
+
+    <button onclick="testPrompt2();">숫자 입력</button>
+    <ul id="ul1"></ul>
+
+    <script>
+        function testPrompt2() {
+            var num = window.prompt('숫자만 입력해주세요');
+            
+            var ulEl = document.getElementById('ul1');
+            var str = '';
+
+            for(var i = 0; i < num; i++) {
+                str += '<li>안녕하세요</li>'
+            }
+            
+            ulEl.innerHTML = str; // 사용자가 입력한 값 만큼의 li 요소 생성
+        }
+    </script>
+
+    <h3>4) 선택한 input요소.value; </h3>
+
+    아이디: <input type="text" name="userId" id="userId"> <br>
+    비밀번호: <input type="password" name="userPwd" id="userPwd"> <br>
+    
+    <button onclick="testInput();">클릭</button>
+
+    <script>
+        function testInput() {
+            var inputId = document.getElementById('userId');
+            var inputPwd = document.getElementById('userPwd');
+
+            console.dir(inputId); // 입력값이 value 속성값으로 들어감
+
+            // 값 가져오기
+            console.log("아이디: " + inputId.value);
+            console.log("비밀번호: " + inputPwd.value);
+
+            // 값 수정
+            inputId.value = '아이디 사용 불가';
+        }
+    </script>
+    
+</body>
+</html>
