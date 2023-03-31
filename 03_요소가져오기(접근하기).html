@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .area{
+            border: 1px solid black;
+            width: 500px;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="area1" class="area"></div>
+    <button onclick="accessId();">클릭</button>
+
+    <script>
+        function accessId() {
+            // 아이디로 요소에 접근할 때
+            // var 변수 = document.getElementById('접근할 요소의 아이디 속성 값');
+            // "요소 객체" 라고 부름
+            var area1 = document.getElementById('area1');
+            console.log(area1);
+    
+            // 선택된 요소의 속성들에 접근해서 값을 가져온다거나 변경 가능
+            // 속성에 접근하고자 한다면 => 선택된 요소객체.접근하고자 하는 속성명
+            area1.innerHTML = '아이디로 접근 성공 <br>';
+            area1.innerHTML += '<mark>안녕하세요</mark>';
+    
+            // 선택된 요소에 스타일 변경
+            area1.style = "background:pink; color:skyblue; width:100px";
+    
+            area1.style.backgroundColor = 'pink';
+            area1.style.color = 'skyblue';
+            area1.style.width = '100px';
+            
+            // 개발자 도구로 확인 시 인라인 방식으로 스타일이 부여된 것을 확인할 수 있음(유지보수에 어려움)
+        }
+    </script>
+
+    <!-- ul>li{목록$}*5 -->
+    <ul>
+        <li>목록1</li>
+        <li>목록2</li>
+        <li>목록3</li>
+        <li>목록4</li>
+        <li>목록5</li>
+    </ul>
+
+    <button onclick="accessTagName();">태그명으로 접근</button>
+
+    <script>
+        function accessTagName() {
+            // 태그명으로 요소에 접근
+            
+            var list = document.getElementsByTagName('li');
+            // [li요소객체1, li요소객체2, ..]
+
+            console.log(list);
+            console.log('배멸의 크기: ' + list.length);
+
+            // 첫번째 li에 접근해서 배경색 변경
+            list[0].style.backgroundColor = 'red';
+        }
+    </script>
+
+    <form action="test.do">
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="hobby" value="근력운동">근력운동
+            <input type="checkbox" name="hobby" value="마라톤">마라톤
+            <input type="checkbox" name="hobby" value="드론">드론
+            <input type="checkbox" name="hobby" value="노래">노래
+            <input type="checkbox" name="hobby" value="사진">사진
+        </fieldset>
+    </form>
+
+    <button onclick="accessName();">name 속성으로 접근</button>
+
+    <script>
+        function accessName() {
+            var hobby = document.getElementsByName('hobby'); // [근력운동checkbox, 마라톤checkbox, ..]
+            // 선택된 요소객체들이 배열에 담겨서 반환
+            // checked: 체크박스 체크시 true, 아니면 false
+
+            console.log(hobby);
+
+            // 1번 체크 시 alert창 띄우기
+            // if(hobby[0].checked){
+            //     alert('1번 체크');
+            // }
+
+            // 체크 확인 로직 짜보기
+            var checkedItem = '';
+            for(var i = 0; i < hobby.length; i++) {
+                if(hobby[i].checked) {
+                    checkedItem += hobby[i].value + ' ';
+                }
+            }
+            alert(checkedItem);
+        }
+    </script>
+
+    <div class="test"></div>
+    <p class="test"></p>
+    <ul class="test">
+        <li></li>
+        <li></li>
+    </ul>
+    <pre class="test test2"></pre>
+
+    <button onclick="accessClass()">class로 접근</button>
+
+    <script>
+        function accessClass() {
+            var arr = document.getElementsByClassName('test');
+            console.log(arr);
+        }
+    </script>
+</body>
+</html>
